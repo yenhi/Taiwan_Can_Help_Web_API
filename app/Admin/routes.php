@@ -28,4 +28,6 @@ Route::group([
     $router->resource('sdgs', SustainableDevelopmentGoalController::class);
 
     $router->resource('sdgs_targets', SustainableDevelopmentGoalsTargetController::class);
+
+    $router->resource('epapers', EpaperController::class);
 });

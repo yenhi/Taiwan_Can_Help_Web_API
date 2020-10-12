@@ -34,3 +34,7 @@ Route::group(['prefix' => 'sdgs'], function () {
     Route::get('/', 'SustainableDevelopmentGoalController@search');
     Route::get('/{id}', 'SustainableDevelopmentGoalController@find');
 });
+
+Route::group(['prefix' => 'epaper'], function () {
+    Route::post('/subscription', 'EpaperController@subscription');
+});
