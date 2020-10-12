@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Exception;
+use App\Http\Responses\ApiResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -29,7 +31,7 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
+     * @param \Exception $exception
      * @return void
      *
      * @throws \Exception
@@ -42,14 +44,25 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param \Illuminate\Http\Request $request
+     * @param \Exception $exception
+     * @return ApiResponse|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response|Response
      *
-     * @throws \Exception
      */
     public function render($request, Exception $exception)
     {
+        if ($request->is('api/*')) {
+            $statusCode = $exception->getCode() == ApiResponse::STATUS_CODE_SUCCESS
+                ? ApiException::ERROR_CODE_UNKNOWN
+                : $exception->getCode();
+            $message = $exception->getMessage();
+            return (new ApiResponse(
+                null,
+                $statusCode,
+                $message
+            ))->toResponse($request);
+        }
+
         return parent::render($request, $exception);
     }
 }
