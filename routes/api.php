@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +13,24 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/', function () {
+    echo 'API is actived!';
+});
+
+Route::get('homepage_carousels', 'HomepageCarouselController@get');
+Route::get('partners', 'PartnerController@get');
+
+Route::group(['prefix' => 'expert'], function () {
+    Route::get('/', 'ExpertController@search');
+    Route::get('/{id}', 'ExpertController@find');
+});
+
+Route::group(['prefix' => 'project'], function () {
+    Route::get('/', 'ProjectController@search');
+    Route::get('/{id}', 'ProjectController@find');
+});
+
+Route::group(['prefix' => 'sdgs'], function () {
+    Route::get('/', 'SustainableDevelopmentGoalController@search');
+    Route::get('/{id}', 'SustainableDevelopmentGoalController@find');
 });
