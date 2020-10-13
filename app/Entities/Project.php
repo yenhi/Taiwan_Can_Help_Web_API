@@ -8,7 +8,7 @@ class Project extends Model
 {
     protected $fillable = [
         'id',
-        'unit_type',
+        'unit_type_id',
         'unit_name',
         'image_path',
         'date',
@@ -16,6 +16,11 @@ class Project extends Model
         'content',
         'display_order',
     ];
+
+    public function unitType()
+    {
+        return $this->belongsTo(UnitType::class);
+    }
 
     public function sustainableDevelopmentGoalsTargets()
     {

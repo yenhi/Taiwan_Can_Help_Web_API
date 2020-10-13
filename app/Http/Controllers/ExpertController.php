@@ -36,7 +36,7 @@ class ExpertController extends Controller
             return [
                 'id' => $expert->id,
                 'image_url' => ImagePathTransformer::getUrl($expert->image_path),
-                'unit_type' => $expert->unit_type,
+                'unit_type' => $expert->unitType->name,
                 'unit_name' => $expert->unit_name,
                 'summary' => $expert->summary,
                 'sgd_items' => SdgsResultTransformer::format($expert->sustainableDevelopmentGoals),
@@ -59,7 +59,7 @@ class ExpertController extends Controller
             'id' => $expert->id,
             'date' => $expert->date,
             'image_url' => ImagePathTransformer::getUrl($expert->image_path),
-            'unit_type' => $expert->unit_type,
+            'unit_type' => $expert->unitType->name,
             'unit_name' => $expert->unit_name,
             'summary' => $expert->summary,
             'content' => $expert->content,

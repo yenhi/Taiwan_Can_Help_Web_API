@@ -36,7 +36,7 @@ class ProjectController extends Controller
             return [
                 'id' => $expert->id,
                 'image_url' => ImagePathTransformer::getUrl($expert->image_path),
-                'unit_type' => $expert->unit_type,
+                'unit_type' => $expert->unitType->name,
                 'unit_name' => $expert->unit_name,
                 'summary' => $expert->summary,
                 'goals_targets' => SdgTargetsResultTransformer::format($expert->sustainableDevelopmentGoalsTargets)
@@ -59,7 +59,7 @@ class ProjectController extends Controller
             'id' => $expert->id,
             'date' => $expert->date,
             'image_url' => ImagePathTransformer::getUrl($expert->image_path),
-            'unit_type' => $expert->unit_type,
+            'unit_type' => $expert->unitType->name,
             'unit_name' => $expert->unit_name,
             'summary' => $expert->summary,
             'content' => $expert->content,

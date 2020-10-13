@@ -22,7 +22,12 @@ class ExpertRepository
             ->select(['experts.*'])
             ->with('sustainableDevelopmentGoals')
             ->when($unitType, function ($query) use ($unitType) {
-                $query->where('experts.unit_type', $unitType);
+                $query->leftJoin(
+                    'unit_types',
+                    'experts.unit_type_id',
+                    '=',
+                    'unit_types.id'
+                )->where('unit_types.mapping_code', $unitType);
             })
             ->when(count($sdgCodes), function ($query) use ($sdgCodes) {
                 $query->leftJoin(

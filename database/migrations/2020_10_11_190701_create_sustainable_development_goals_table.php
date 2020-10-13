@@ -16,7 +16,7 @@ class CreateSustainableDevelopmentGoalsTable extends Migration
         Schema::create('sustainable_development_goals', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 100);
-            $table->string('code', 100);
+            $table->string('code', 100)->unique();
             $table->string('image_path', 2000);
             $table->string('color_code', 100);
             $table->string('summary', 2000)->nullable();

@@ -90,7 +90,7 @@ class SustainableDevelopmentGoalController extends Controller
                     return [
                         'goals_target_code' => $sustainableDevelopmentGoalsTarget->code,
                         'color_code' => $sustainableDevelopmentGoal->color_code,
-                        'image_url' => ImagePathTransformer::getUrl($sustainableDevelopmentGoal->image_path),
+                        'image_url' => ImagePathTransformer::getUrl($sustainableDevelopmentGoalsTarget->image_path),
                         'name' => $sustainableDevelopmentGoalsTarget->name,
                         'content' => $sustainableDevelopmentGoalsTarget->content,
                     ];

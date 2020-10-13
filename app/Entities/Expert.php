@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Expert extends Model
 {
     protected $fillable = [
-        'unit_type',
+        'unit_type_id',
         'unit_name',
         'image_path',
         'date',
@@ -15,6 +15,11 @@ class Expert extends Model
         'content',
         'display_order',
     ];
+
+    public function unitType()
+    {
+        return $this->belongsTo(UnitType::class);
+    }
 
     public function sustainableDevelopmentGoals()
     {

@@ -25,7 +25,12 @@ class ProjectRepository
             ->select(['projects.*'])
             ->with('sustainableDevelopmentGoalsTargets')
             ->when($unitType, function ($query) use ($unitType) {
-                $query->where('projects.unit_type', $unitType);
+                $query->leftJoin(
+                    'unit_types',
+                    'projects.unit_type_id',
+                    '=',
+                    'unit_types.id'
+                )->where('unit_types.mapping_code', $unitType);
             })
             ->when(count($sdgCodes), function ($query) use ($sdgCodes, $sustainableDevelopmentGoalsTargetIds) {
                 $query->leftJoin(

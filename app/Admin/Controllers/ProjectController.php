@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Entities\Project;
 use App\Entities\SustainableDevelopmentGoalsTarget;
+use App\Entities\UnitType;
 use App\Transformers\FilenameTransformer;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -28,7 +29,7 @@ class ProjectController extends AdminController
     {
         $grid = new Grid(new Project());
 
-        $grid->column('unit_type', '單位類別');
+        $grid->column('unitType.name', '單位類別');
         $grid->column('unit_name', '單位名稱');
         $grid->column('image_path', '圖片')->image();
         $grid->column('display_order', '顯示排序')->sortable();
@@ -73,7 +74,9 @@ class ProjectController extends AdminController
             )
             ->required();
 
-        $form->text('unit_type', '單位類別')->required();
+        $form->select('unit_type_id', '單位類別')
+            ->options(UnitType::all()->pluck('name', 'id'))
+            ->required();
         $form->text('unit_name', '單位名稱')->required();
         $form->image('image_path', '圖片')
             ->help('建議長寬：')

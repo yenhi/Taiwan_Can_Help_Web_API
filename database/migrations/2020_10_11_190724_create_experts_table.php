@@ -15,7 +15,11 @@ class CreateExpertsTable extends Migration
     {
         Schema::create('experts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('unit_type', 255);
+            $table->unsignedInteger('unit_type_id');
+            $table->foreign('unit_type_id', 'e_uti_fk')
+                ->references('id')->on('unit_types')
+                ->onUpdate('RESTRICT')
+                ->onDelete('RESTRICT');
             $table->string('unit_name', 255);
             $table->string('image_path', 2000);
             $table->date('date');

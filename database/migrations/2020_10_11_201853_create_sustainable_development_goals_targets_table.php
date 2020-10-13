@@ -20,7 +20,7 @@ class CreateSustainableDevelopmentGoalsTargetsTable extends Migration
                 ->references('id')->on('sustainable_development_goals')
                 ->onUpdate('RESTRICT')
                 ->onDelete('RESTRICT');
-            $table->string('code', 100);
+            $table->string('code', 100)->unique();
             $table->string('name', 255);
             $table->string('image_path', 2000);
             $table->mediumText('content');
