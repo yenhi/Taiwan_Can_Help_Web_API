@@ -22,8 +22,15 @@ class ProjectController extends Controller
     public function search(Request $request)
     {
         $numberPerPage = $request->input('number_per_page', 3);
+        $sdgCodes = $request->input('sdg_codes', null);
+        $sdgCodes = $sdgCodes ? explode('|', $sdgCodes) : [];
 
-        $result = $this->projectRepository->search($numberPerPage);
+        $attributes = [
+            'sdg_codes' => $sdgCodes,
+            'unit_type' => $request->input('unit_type', null),
+        ];
+
+        $result = $this->projectRepository->search($numberPerPage, $attributes);
 
         $experts = SearchResultTransformer::format($result, function ($expert) {
             return [

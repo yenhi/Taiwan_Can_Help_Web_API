@@ -25,4 +25,12 @@ class SustainableDevelopmentGoalRepository
             ->with('sustainableDevelopmentGoalsTargets')
             ->find($id);
     }
+
+    public function findByCode(string $code)
+    {
+        return $this->model()
+            ->with('sustainableDevelopmentGoalsTargets')
+            ->where('code', $code)
+            ->first();
+    }
 }

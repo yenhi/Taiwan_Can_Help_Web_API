@@ -32,7 +32,7 @@ Route::group(['prefix' => 'project'], function () {
 
 Route::group(['prefix' => 'sdgs'], function () {
     Route::get('/', 'SustainableDevelopmentGoalController@search');
-    Route::get('/{id}', 'SustainableDevelopmentGoalController@find');
+    Route::get('/{code}', 'SustainableDevelopmentGoalController@findByCode');
 });
 
 Route::group(['prefix' => 'epaper'], function () {

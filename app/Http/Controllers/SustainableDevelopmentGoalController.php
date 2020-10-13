@@ -67,4 +67,36 @@ class SustainableDevelopmentGoalController extends Controller
 
         return new ApiResponse($sustainableDevelopmentGoal);
     }
+
+    public function findByCode(string $code)
+    {
+        $sustainableDevelopmentGoal = $this->sustainableDevelopmentGoalRepository->findByCode($code);
+
+        throw_unless(
+            $sustainableDevelopmentGoal,
+            new ApiException('查無此資料', ApiException::ERROR_CODE_SUSTAINABLE_DEVELOPMENT_GOAL_NOT_FOUND)
+        );
+
+        $sustainableDevelopmentGoal = [
+            'id' => $sustainableDevelopmentGoal->id,
+            'sdg_target_code' => $sustainableDevelopmentGoal->code,
+            'image_url' => ImagePathTransformer::getUrl($sustainableDevelopmentGoal->image_path),
+            'color_code' => $sustainableDevelopmentGoal->color_code,
+            'name' => $sustainableDevelopmentGoal->name,
+            'summary' => $sustainableDevelopmentGoal->summary,
+            'content' => $sustainableDevelopmentGoal->content,
+            'goals_targets' => $sustainableDevelopmentGoal->sustainableDevelopmentGoalsTargets
+                ->map(function ($sustainableDevelopmentGoalsTarget) use ($sustainableDevelopmentGoal) {
+                    return [
+                        'goals_target_code' => $sustainableDevelopmentGoalsTarget->code,
+                        'color_code' => $sustainableDevelopmentGoal->color_code,
+                        'image_url' => ImagePathTransformer::getUrl($sustainableDevelopmentGoal->image_path),
+                        'name' => $sustainableDevelopmentGoalsTarget->name,
+                        'content' => $sustainableDevelopmentGoalsTarget->content,
+                    ];
+                }),
+        ];
+
+        return new ApiResponse($sustainableDevelopmentGoal);
+    }
 }
