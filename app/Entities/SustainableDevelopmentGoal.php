@@ -12,6 +12,7 @@ class SustainableDevelopmentGoal extends Model
         'image_path',
         'color_code',
         'summary',
+        'title',
         'content',
         'display_order',
     ];

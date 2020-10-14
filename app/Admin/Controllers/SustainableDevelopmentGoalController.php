@@ -67,6 +67,7 @@ class SustainableDevelopmentGoalController extends AdminController
             ->name(FilenameTransformer::get())
             ->required();
         $form->color('color_code', '代表色')->required();
+        $form->text('title', '標題')->required();
         $form->textarea('summary', '內容大綱')->required();
         $form->UEditor('content', '內容')->required();
         $form->number('display_order', '顯示排序')

@@ -19,6 +19,7 @@ class CreateSustainableDevelopmentGoalsTable extends Migration
             $table->string('code', 100)->unique();
             $table->string('image_path', 2000);
             $table->string('color_code', 100);
+            $table->string('title', 100);
             $table->string('summary', 2000)->nullable();
             $table->mediumText('content');
             $table->unsignedInteger('display_order')->default(0);

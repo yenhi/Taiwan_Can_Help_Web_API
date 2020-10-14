@@ -53,6 +53,7 @@ class SustainableDevelopmentGoalController extends Controller
             'color_code' => $sustainableDevelopmentGoal->color_code,
             'name' => $sustainableDevelopmentGoal->name,
             'summary' => $sustainableDevelopmentGoal->summary,
+            'title' => $sustainableDevelopmentGoal->title,
             'content' => $sustainableDevelopmentGoal->content,
             'goals_targets' => $sustainableDevelopmentGoal->sustainableDevelopmentGoalsTargets
                 ->map(function ($sustainableDevelopmentGoalsTarget) use ($sustainableDevelopmentGoal) {
@@ -84,6 +85,7 @@ class SustainableDevelopmentGoalController extends Controller
             'color_code' => $sustainableDevelopmentGoal->color_code,
             'name' => $sustainableDevelopmentGoal->name,
             'summary' => $sustainableDevelopmentGoal->summary,
+            'title' => $sustainableDevelopmentGoal->title,
             'content' => $sustainableDevelopmentGoal->content,
             'goals_targets' => $sustainableDevelopmentGoal->sustainableDevelopmentGoalsTargets
                 ->map(function ($sustainableDevelopmentGoalsTarget) use ($sustainableDevelopmentGoal) {
