@@ -24,7 +24,9 @@ class CreateExpertsTable extends Migration
             $table->string('image_path', 2000);
             $table->date('date');
             $table->string('summary', 2000)->nullable();
-            $table->mediumText('content');
+            $table->mediumText('intro');
+            $table->mediumText('solution');
+            $table->string('url', 2000)->nullable();
             $table->unsignedInteger('display_order')->default(0);
             $table->timestamps();
         });

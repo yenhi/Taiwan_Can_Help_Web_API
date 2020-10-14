@@ -12,7 +12,9 @@ class Expert extends Model
         'image_path',
         'date',
         'summary',
-        'content',
+        'intro',
+        'solution',
+        'url',
         'display_order',
     ];
 

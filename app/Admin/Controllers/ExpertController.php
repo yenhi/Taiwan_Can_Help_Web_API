@@ -76,7 +76,9 @@ class ExpertController extends AdminController
             ->required();
         $form->date('date', '日期')->required();
         $form->textarea('summary', '內容大綱')->required();
-        $form->UEditor('content', '內容')->required();
+        $form->UEditor('intro', '組織介紹')->required();
+        $form->UEditor('solution', '解決方案')->required();
+        $form->url('url', '官方網站');
         $form->number('display_order', '顯示排序')
             ->help('數字越小越前面')
             ->default(0);
