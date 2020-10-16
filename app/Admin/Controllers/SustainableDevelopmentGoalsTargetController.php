@@ -72,7 +72,7 @@ class SustainableDevelopmentGoalsTargetController extends AdminController
             ->help('建議長寬：')
             ->name(FilenameTransformer::get())
             ->required();
-        $form->UEditor('content', '內容')->required();
+        $form->textarea('content', '內容')->required();
         $form->number('display_order', '顯示排序')
             ->help('數字越小越前面')
             ->default(0);
