@@ -62,8 +62,8 @@ class ExpertController extends Controller
             'unit_type' => $expert->unitType->name,
             'unit_name' => $expert->unit_name,
             'summary' => $expert->summary,
-            'intro' => $expert->intro,
-            'solution' => $expert->solution,
+            'intro' => nl2br($expert->intro),
+            'solution' => nl2br($expert->solution),
             'url' => $expert->url,
             'sgd_items' => SdgsResultTransformer::format($expert->sustainableDevelopmentGoals),
         ];

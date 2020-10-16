@@ -54,7 +54,7 @@ class SustainableDevelopmentGoalController extends Controller
             'name' => $sustainableDevelopmentGoal->name,
             'summary' => $sustainableDevelopmentGoal->summary,
             'title' => $sustainableDevelopmentGoal->title,
-            'content' => $sustainableDevelopmentGoal->content,
+            'content' => nl2br($sustainableDevelopmentGoal->content),
             'goals_targets' => $sustainableDevelopmentGoal->sustainableDevelopmentGoalsTargets
                 ->map(function ($sustainableDevelopmentGoalsTarget) use ($sustainableDevelopmentGoal) {
                     return [
@@ -86,7 +86,7 @@ class SustainableDevelopmentGoalController extends Controller
             'name' => $sustainableDevelopmentGoal->name,
             'summary' => $sustainableDevelopmentGoal->summary,
             'title' => $sustainableDevelopmentGoal->title,
-            'content' => $sustainableDevelopmentGoal->content,
+            'content' => nl2br($sustainableDevelopmentGoal->content),
             'goals_targets' => $sustainableDevelopmentGoal->sustainableDevelopmentGoalsTargets
                 ->map(function ($sustainableDevelopmentGoalsTarget) use ($sustainableDevelopmentGoal) {
                     return [
@@ -94,7 +94,7 @@ class SustainableDevelopmentGoalController extends Controller
                         'color_code' => $sustainableDevelopmentGoal->color_code,
                         'image_url' => ImagePathTransformer::getUrl($sustainableDevelopmentGoalsTarget->image_path),
                         'name' => $sustainableDevelopmentGoalsTarget->name,
-                        'content' => $sustainableDevelopmentGoalsTarget->content,
+                        'content' => nl2br($sustainableDevelopmentGoalsTarget->content),
                     ];
                 }),
         ];

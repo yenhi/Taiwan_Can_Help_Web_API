@@ -62,7 +62,7 @@ class ProjectController extends Controller
             'unit_type' => $expert->unitType->name,
             'unit_name' => $expert->unit_name,
             'summary' => $expert->summary,
-            'content' => $expert->content,
+            'content' => nl2br($expert->content),
             'goals_targets' => SdgTargetsResultTransformer::format($expert->sustainableDevelopmentGoalsTargets)
         ];
 
