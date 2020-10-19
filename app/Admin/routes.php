@@ -30,4 +30,6 @@ Route::group([
     $router->resource('sdgs_targets', SustainableDevelopmentGoalsTargetController::class);
 
     $router->resource('epapers', EpaperController::class);
+
+    $router->resource('expert_contact_forms', ExpertContactFormController::class);
 });

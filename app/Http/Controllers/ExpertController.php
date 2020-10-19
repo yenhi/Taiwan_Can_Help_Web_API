@@ -9,6 +9,8 @@ use App\Repositories\ExpertRepository;
 use App\Transformers\ImagePathTransformer;
 use App\Transformers\SdgsResultTransformer;
 use App\Transformers\SearchResultTransformer;
+use App\Http\Requests\ExpertContactFormRequest;
+use App\Repositories\ExpertContactFormRepository;
 
 class ExpertController extends Controller
 {
@@ -69,5 +71,24 @@ class ExpertController extends Controller
         ];
 
         return new ApiResponse($expert);
+    }
+
+    public function contact(ExpertContactFormRequest $request)
+    {
+        $contactForm = $request->validated();
+
+        $expert = $this->expertRepository->find($contactForm['expert_id']);
+
+        throw_unless(
+            $expert,
+            new ApiException('查無此資料', ApiException::ERROR_CODE_PROJECT_NOT_FOUND)
+        );
+
+        /** @var ExpertContactFormRepository $expertContactFormRepository */
+        $expertContactFormRepository = resolve(ExpertContactFormRepository::class);
+
+        $expertContactFormRepository->create($contactForm);
+
+        return new ApiResponse([]);
     }
 }

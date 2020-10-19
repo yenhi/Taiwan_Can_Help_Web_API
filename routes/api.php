@@ -23,6 +23,7 @@ Route::get('partners', 'PartnerController@get');
 Route::group(['prefix' => 'expert'], function () {
     Route::get('/', 'ExpertController@search');
     Route::get('/{id}', 'ExpertController@find');
+    Route::post('/contact', 'ExpertController@contact');
 });
 
 Route::group(['prefix' => 'project'], function () {
